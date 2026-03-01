@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BtnCalcBase">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <!-- Gris oscuro: números -->
+    <style name="BtnNum" parent="BtnCalcBase">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">@drawable/btn_num_bg</item>
+    </style>
+
+    <!-- Gris medio: funciones -->
+    <style name="BtnFunc" parent="BtnCalcBase">
+        <item name="android:textColor">#CCD6F6</item>
+        <item name="android:background">@drawable/btn_func_bg</item>
+    </style>
+
+    <!-- Naranja: operadores + igual -->
+    <style name="BtnOp" parent="BtnCalcBase">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">@drawable/btn_op_bg</item>
+    </style>
+
+    <style name="BtnEqual" parent="BtnOp"/>
+
+</resources>

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0F1117"
+    android:fitsSystemWindows="true">
+
+    <!-- ═══════════════ HEADER (mismo estilo) ═══════════════ -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="130dp"
+        android:background="#1A1D2E"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/btnBackCalc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="‹ Menú"
+            android:textColor="#8892B0"
+            android:textSize="15sp"
+            android:padding="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calculadora"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvSubtitle"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Operaciones aritméticas básicas"
+            android:textColor="#8892B0"
+            android:textSize="12sp"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- ═══════════════ PANTALLA ═══════════════ -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardDisplay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#1A1D2E"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        android:layout_marginHorizontal="14dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="16dp">
+
+            <!-- Historial de la última operación -->
+            <TextView
+                android:id="@+id/tvRecord"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#4A4F6A"
+                android:textSize="13sp"
+                android:gravity="end"
+                android:singleLine="true"
+                android:layout_marginBottom="2dp"/>
+
+            <!-- Expresión actual (num1 + operador) -->
+            <TextView
+                android:id="@+id/tvExpression"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#8892B0"
+                android:textSize="18sp"
+                android:gravity="end"
+                android:singleLine="true"
+                android:layout_marginBottom="4dp"/>
+
+            <!-- Número principal -->
+            <TextView
+                android:id="@+id/tvDisplay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                android:textSize="72sp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="end"
+                android:singleLine="true"
+                android:ellipsize="start"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- ═══════════════ GRID DE BOTONES ═══════════════ -->
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/gridButtons"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="14dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="14dp"
+        app:columnCount="4"
+        app:rowCount="6"
+        app:layout_constraintTop_toBottomOf="@id/cardDisplay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- ── FILA 0: AC  +/−  %  ÷ ── -->
+        <TextView android:id="@+id/btnAC"
+            style="@style/BtnFunc"
+            android:text="AC"
+            app:layout_column="0" app:layout_row="0"
+            app:layout_columnWeight="1" app:layout_rowWeight="1"/>
+
+        <TextView android:id="@+id/btnPlusMinus"
+            style="@style/BtnFunc"
+            android:text="+/−"
+            app:layout_column="1" app:layout_row="0"
+            app:layout_columnWeight="1" app:layout_rowWeight="1"/>
+
+        <TextView android:id="@+id/btnPercentage"
+            style="@style/BtnFunc"
+            android:text="%"
+            app:layout_column="2" app:layout_row="0"
+            app:layout_columnWeight="1" app:layout_rowWeight="1"/>
+
+        <TextView android:id="@+id/btnDiv"
+            style="@style/BtnOp"
+            android:text="÷"
+            app:layout_column="3" app:layout_row="0"
+            app:layout_columnWeight="1" app:layout_rowWeight="1"/>
+
+        <!-- ── FILA 1: 7  8  9  × ── -->
+        <TextView android:id="@+id/btn7"
+            style="@style/BtnNum"
+            android:text="7"
+            app:layout_column="0" app:layout_row="1"
+            app:layout_columnWeight="1" app:layout_rowWeight="1"/>
+
+        <TextView android:id="@+id/btn8"
+            style="@style/BtnNum"
+            android:text="8"
+            app:layout_column="1" app:layout_row="1"
+            app:layout_columnWeight="1" app:layout_rowWeight="1"/>
+
+        <TextView android:id="@+id/btn9"
+            style="@style/BtnNum"
+            android:text="9"
+            app:layout_column="2" app:layout_row="1"
+            app:layout_columnWeight="1" app:layout_rowWeight="1"/>
+
+        <TextView android:id="@+id/btnMult"
+            style="@style/BtnOp"
+            android:text="×"
+            app:layout_column="3" app:layout_row="1"
+            app:layout_columnWeight="1" app:layout_rowWeight="1"/>
+
+        <!-- ── FILA 2: 4  5  6  − ── -->
+        <TextView android:id="@+id/btn4"
+            style="@style/BtnNum"
+            android:text="4"
+            app:layout_column="0" app:layout_row="2"
+            app:layout_columnWeight="1" app:layout_rowWeight="1"/>
+
+        <TextView android:id="@+id/btn5"
+            style="@style/BtnNum"
+            android:text="5"
+            app:layout_column="1" app:layout_row="2"
+            app:layout_columnWeight="1" app:layout_rowWeight="1"/>
+
+        <TextView android:id="@+id/btn6"
+            style="@style/BtnNum"
+            android:text="6"
+            app:layout_column="2" app:layout_row="2"
+            app:layout_columnWeight="1" app:layout_rowWeight="1"/>
+
+        <TextView android:id="@+id/btnMinus"
+            style="@style/BtnOp"
+            android:text="−"
+            app:layout_column="3" app:layout_row="2"
+            app:layout_columnWeight="1" app:layout_rowWeight="1"/>
+
+        <!-- ── FILA 3: 1  2  3  + ── -->
+        <TextView android:id="@+id/btn1"
+            style="@style/BtnNum"
+            android:text="1"
+            app:layout_column="0" app:layout_row="3"
+            app:layout_columnWeight="1" app:layout_rowWeight="1"/>
+
+        <TextView android:id="@+id/btn2"
+            style="@style/BtnNum"
+            android:text="2"
+            app:layout_column="1" app:layout_row="3"
+            app:layout_columnWeight="1" app:layout_rowWeight="1"/>
+
+        <TextView android:id="@+id/btn3"
+            style="@style/BtnNum"
+            android:text="3"
+            app:layout_column="2" app:layout_row="3"
+            app:layout_columnWeight="1" app:layout_rowWeight="1"/>
+
+        <TextView android:id="@+id/btnSum"
+            style="@style/BtnOp"
+            android:text="+"
+            app:layout_column="3" app:layout_row="3"
+            app:layout_columnWeight="1" app:layout_rowWeight="1"/>
+
+        <!-- ── FILA 4: xⁿ  √  ⌫  = ── -->
+        <TextView android:id="@+id/btnExp"
+            style="@style/BtnFunc"
+            android:text="xⁿ"
+            android:textSize="18sp"
+            app:layout_column="0" app:layout_row="4"
+            app:layout_columnWeight="1" app:layout_rowWeight="1"/>
+
+        <TextView android:id="@+id/btnRoot"
+            style="@style/BtnFunc"
+            android:text="√"
+            android:textSize="22sp"
+            app:layout_column="1" app:layout_row="4"
+            app:layout_columnWeight="1" app:layout_rowWeight="1"/>
+
+        <TextView android:id="@+id/btnDelete"
+            style="@style/BtnFunc"
+            android:text="⌫"
+            android:textSize="22sp"
+            app:layout_column="2" app:layout_row="4"
+            app:layout_columnWeight="1" app:layout_rowWeight="1"/>
+
+        <TextView android:id="@+id/btnEqual"
+            style="@style/BtnEqual"
+            android:text="="
+            app:layout_column="3" app:layout_row="4"
+            app:layout_columnWeight="1" app:layout_rowWeight="1"/>
+
+        <!-- ── FILA 5: 0 (doble ancho)  .  [vacío] ── -->
+        <TextView android:id="@+id/btn0"
+            style="@style/BtnNum"
+            android:text="0"
+            android:gravity="center"
+            app:layout_column="0" app:layout_row="5"
+            app:layout_columnSpan="2"
+            app:layout_columnWeight="2" app:layout_rowWeight="1"/>
+
+        <TextView android:id="@+id/btnDot"
+            style="@style/BtnNum"
+            android:text="."
+            android:textSize="28sp"
+            app:layout_column="2" app:layout_row="5"
+            app:layout_columnWeight="1" app:layout_rowWeight="1"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_column="3" app:layout_row="5"
+            app:layout_columnWeight="1" app:layout_rowWeight="1"/>
+
+    </androidx.gridlayout.widget.GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
